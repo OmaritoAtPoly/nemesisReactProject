@@ -1,8 +1,7 @@
-import React from 'react';
 
+// this is my local users storage 
 
-const datos = [
-        { id: 1, nombre: "Asfo" },  //John with PASSWORD: 12345
-        { id: 2, nombre: "Denisse" }, //MICKY with password: 98765 
-        { id: 3, nombre: "Carlos" }
+export const users = [
+        { id: 1, name: "John", keyword:12345 },   
+        { id: 1, name: "MICKY", keyword:98765 },  
        ];

@@ -1,13 +1,25 @@
-state = login:false
+import { useState } from 'react';
+import { users } from './mochData'
+import jwt from 'jsonwebtoken';
+import secretKey from './secret';
 
+const secretWord = secretKey();
+const [logged, setLogged] = useState(false);
 
+export const isValidUser = (userName: string, userKeyword: any) => {
+        const isValid = users.map(user => ((user.name == userName && user.keyword == userKeyword)));
+        isValid ? true : false;
+}
 
-const payload = {
-        check:  true       //todo aki se lo ek devuelve el metodo isValidUser 
-       };
+export const userSignIn = () => {
+        setLogged(true);
+        const payload = { check: logged };
+        const token = jwt.sign(payload, secretWord, { expiresIn: 300000 })
 
-       const token = jwt.sign(payload, app.get('llave'), {
-        expiresIn: 300000
-       });
+        if (token) { localStorage.setItem("isLogged", token); }
+}
 
-       localStorage.setItem('login',{login_state= true,token:token})
+export const logOut = () => {
+        setLogged(false);
+        localStorage.setItem("isLogged", "");
+}

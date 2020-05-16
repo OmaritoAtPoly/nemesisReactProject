@@ -1439,6 +1439,11 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
+"@types/geojson@*":
+  version "7946.0.7"
+  resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
+  integrity sha512-wE2v81i4C4Ol09RtsWFAqg3BUitWbHSpSlIo+bNdsCJijO9sjme+zm+73ZMCa/qMC8UEERxzGbvmr1cffo2SiQ==
+
 "@types/glob@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.1.tgz#aa59a1c6e3fbc421e07ccd31a944c30eba521575"
@@ -1452,6 +1457,12 @@
   version "4.7.5"
   resolved "https://registry.yarnpkg.com/@types/history/-/history-4.7.5.tgz#527d20ef68571a4af02ed74350164e7a67544860"
   integrity sha512-wLD/Aq2VggCJXSjxEwrMafIP51Z+13H78nXIX0ABEuIGhmB5sNGbR113MOKo+yfw+RDo1ZU3DM6yfnnRF/+ouw==
+"@types/highcharts@^5.0.44":
+  version "5.0.44"
+  resolved "https://registry.yarnpkg.com/@types/highcharts/-/highcharts-5.0.44.tgz#39f677e8e637555ace4c3e690e8627a61abc9563"
+  integrity sha512-Rby1gj3GbK7zzsbK/g9T9hoybUfM+x0sBIXrOlTnj25TIvuTkLend3nKRLLz2upvLJNo36GntO6KmTFoVQXWZA==
+  dependencies:
+    "@types/geojson" "*"
 
 "@types/istanbul-lib-coverage@*", "@types/istanbul-lib-coverage@^2.0.0":
   version "2.0.1"
@@ -1522,6 +1533,7 @@
   dependencies:
     "@types/react" "*"
 
+<<<<<<< HEAD
 "@types/react-router-dom@^5.1.5":
   version "5.1.5"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-5.1.5.tgz#7c334a2ea785dbad2b2dcdd83d2cf3d9973da090"
@@ -1537,6 +1549,14 @@
   integrity sha512-2ouP76VQafKjtuc0ShpwUebhHwJo0G6rhahW9Pb8au3tQTjYXd2jta4wv6U2tGLR/I42yuG00+UXjNYY0dTzbg==
   dependencies:
     "@types/history" "*"
+=======
+"@types/react-highcharts@^16.0.2":
+  version "16.0.2"
+  resolved "https://registry.yarnpkg.com/@types/react-highcharts/-/react-highcharts-16.0.2.tgz#a4249262b28dc9cc8ff26eda9e993ed69d0ff45c"
+  integrity sha512-Mpd5RN2qFAvCoUxYmuwpmBUHWVS+/yDBCb3id1buPCK/71g20pF1rGjTzCB2rg1dBZ0RfMFJOS74wGenbNA+2A==
+  dependencies:
+    "@types/highcharts" "^5.0.44"
+>>>>>>> master
     "@types/react" "*"
 
 "@types/react@*", "@types/react@^16.9.0":
@@ -4941,6 +4961,11 @@ hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
   integrity sha512-l9sfDFsuqtOqKDsQdqrMRk0U85RZc0RtOR9yPI7mRVOa4FsR/BVnZ0shmQRM96Ji99kYZP/7hn1cedc1+ApsTQ==
+
+highcharts-react-official@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/highcharts-react-official/-/highcharts-react-official-3.0.0.tgz#f2e81ed59d299c3473a0dd5ba5df24028875226a"
+  integrity sha512-VefJgDY2hkT9gfppsQGrRF2g5u8d9dtfHGcx2/xqiP+PkZXCqalw9xOeKVCRvJKTOh0coiDFwvVjOvB7KaGl4A==
 
 history@^4.9.0:
   version "4.10.1"

@@ -1,9 +1,10 @@
-import React from 'react'
+import React from "react";
+import ChartIssuesContainer from "./ChartIssues";
 
 export const Home = () => {
-    return (
-        <div>
-            Hola Soy Home
-        </div>
-    )
-}
+  return (
+    <div>
+      <ChartIssuesContainer />
+    </div>
+  );
+};

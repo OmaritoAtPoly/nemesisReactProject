@@ -3,18 +3,13 @@ import HighchartsReact from "highcharts-react-official";
 import * as React from "react";
 
 type Props = {
-  data?: Highcharts.PointOptionsObject[];
+  series?: Highcharts.SeriesAbandsOptions[];
   title?: string;
 };
 
-const Chart: React.FC<Props> = ({ title, data = [] }) => {
+const Chart: React.FC<Props> = ({ title, series = [] }) => {
   const options: Highcharts.Options = {
-    series: [
-      {
-        type: "column",
-        data
-      },
-    ],
+    series,
     chart: {
       type: "column",
     },
@@ -28,8 +23,8 @@ const Chart: React.FC<Props> = ({ title, data = [] }) => {
     xAxis: {
       type: "datetime",
       dateTimeLabelFormats: {
-        month: "%e. %b",
-        year: "%b",
+        month: "%b '%y",
+        year: "%Y",
       },
       title: {
         text: "Date",

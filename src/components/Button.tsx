@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button as ButtonUI} from "@material-ui/core";
 import { ButtonBaseProps } from "@material-ui/core/ButtonBase";
 import React, { useMemo } from "react";
 
@@ -10,7 +10,7 @@ type Props = {
   fullWidth: boolean;
 } & ButtonBaseProps;
 
-const ButtonComponent: React.FC<Props> = ({
+const Button: React.FC<Props> = ({
   label,
   typeVariant,
   fullWidth,
@@ -21,14 +21,14 @@ const ButtonComponent: React.FC<Props> = ({
     [typeVariant]
   );
   return (
-    <Button
+    <ButtonUI
       fullWidth={fullWidth}
       variant={variant}
       {...rest}
       color="primary"
     >
       {label}
-    </Button>
+    </ButtonUI>
   );
 };
- export default ButtonComponent; 
+ export default Button; 

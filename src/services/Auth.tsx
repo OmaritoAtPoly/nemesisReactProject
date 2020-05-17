@@ -30,6 +30,6 @@ export const getCurrentUser = () => {
 
 
 export const userLogOut = () => {
-        localStorage.setItem("isLogged", "");
+        localStorage.removeItem('isLogged');
 }
 

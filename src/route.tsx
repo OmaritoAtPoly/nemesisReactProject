@@ -1,7 +1,7 @@
 import React from 'react'
 import { Switch, Route } from "react-router-dom";
-import  Login  from '../container/Login';
-import { Home } from '../container/Home';
+import  Login  from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 export const Router = () => {
     return (
@@ -10,7 +10,7 @@ export const Router = () => {
                 <Login />
             </Route>
             <Route path="/">
-                <Home />
+                <Dashboard />
             </Route>
         </Switch>
     )

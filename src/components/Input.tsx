@@ -1,4 +1,3 @@
-import { makeStyles } from "@material-ui/core/styles";
 import TextField, { TextFieldProps } from "@material-ui/core/TextField";
 import React, { useMemo } from "react";
 
@@ -12,7 +11,7 @@ type Props = {
 
 export type GDInputProps = Omit<TextFieldProps, "error">;
 
-export const InputComponent: React.FC<Props> = ({
+export const Input: React.FC<Props> = ({
   typeVariant,
   required = false,
   error,
@@ -21,7 +20,6 @@ export const InputComponent: React.FC<Props> = ({
   value,
   ...rest
 }) => {
-  const classes = useStyles();
   const variant = useMemo(
     () =>
       ({ login: "outlined", primary: "standard", secondary: "filled" }[
@@ -32,17 +30,12 @@ export const InputComponent: React.FC<Props> = ({
   return (
     <TextField
       error={error ? true : false}
-      {...rest} variant={variant}
+      {...rest}
+      variant={variant}
       onChange={onChange}
-      value={value} />
+      value={value}
+    />
   );
 };
 
-const useStyles = makeStyles(theme => ({
-  error: {
-    color: theme.palette.error.main,
-    width: "100%",
-    textAlign: "left"
-  }
-}));
-export default InputComponent;
+export default Input;

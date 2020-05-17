@@ -1,25 +1,37 @@
-import { useState } from 'react';
-import { users } from './mochData'
 import jwt from 'jsonwebtoken';
+import { users } from './mochData';
 import secretKey from './secret';
 
+
+let userData: any = undefined
 const secretWord = secretKey();
-const [logged, setLogged] = useState(false);
 
 export const isValidUser = (userName: string, userKeyword: any) => {
-        const isValid = users.map(user => ((user.name == userName && user.keyword == userKeyword)));
-        isValid ? true : false;
+
+        const index = users.findIndex(user => (user.name === userName && user.keyword === userKeyword))
+        if (index > -1) {
+                userData = users[index]
+        }
+        return index;
 }
 
 export const userSignIn = () => {
-        setLogged(true);
-        const payload = { check: logged };
-        const token = jwt.sign(payload, secretWord, { expiresIn: 300000 })
+        if (userData !== undefined) {
+                const token = jwt.sign({ userData }, secretWord, { expiresIn: 300000 })
+                if (token) { localStorage.setItem("isLogged", token) }
+        }
+}
+export const getCurrentUser = () => {
+        const token = localStorage.getItem("isLogged");
 
-        if (token) { localStorage.setItem("isLogged", token); }
+        if (token) {
+                const currentUser = jwt.verify(token, secretWord);
+                return currentUser;
+        }
 }
 
-export const logOut = () => {
-        setLogged(false);
+
+export const userLogOut = () => {
         localStorage.setItem("isLogged", "");
 }
+

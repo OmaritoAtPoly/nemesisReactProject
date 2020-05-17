@@ -43,36 +43,56 @@ const ColumnChart = () => {
     value: "comments",
   });
 
-  const seriesCreatedAt = [
-    {
-      type: "column" as any,
-      data: dataCreatedAtIssues,
-      name: "Issues",
-    },
-    {
-      type: "column" as any,
-      data: dataCreatedAtComments,
-      name: "comments",
-    },
-  ];
+  const seriesCreatedAt = useMemo(
+    () => [
+      {
+        type: "column" as any,
+        data: dataCreatedAtIssues,
+        name: "Issues",
+      },
+      {
+        type: "column" as any,
+        data: dataCreatedAtComments,
+        name: "comments",
+      },
+    ],
+    [dataCreatedAtIssues, dataCreatedAtComments]
+  );
 
-  const seriesUpdatedAt = [
-    {
-      type: "column" as any,
-      data: dataUpdatedAtIssues,
-      name: "Issues",
-    },
-    {
-      type: "column" as any,
-      data: dataUpdateAtComments,
-      name: "comments",
-    },
-  ];
+  const seriesUpdatedAt = useMemo(
+    () => [
+      {
+        type: "column" as any,
+        data: dataUpdatedAtIssues,
+        name: "Issues",
+      },
+      {
+        type: "column" as any,
+        data: dataUpdateAtComments,
+        name: "comments",
+      },
+    ],
+    [dataUpdatedAtIssues, dataUpdateAtComments]
+  );
 
   return (
     <>
-      <Chart title="CreatedAt chart" series={seriesCreatedAt} />
-      <Chart title="UpdateAt chart" series={seriesUpdatedAt} />
+      <Chart
+        title="CreatedAt chart"
+        series={seriesCreatedAt}
+        tooltip={{
+          headerFormat: "<b>{series.name}</b><br>",
+          pointFormat: "{point.x:%e. %b}: {point.y:.2f} issues",
+        }}
+      />
+      <Chart
+        title="UpdateAt chart"
+        series={seriesUpdatedAt}
+        tooltip={{
+          headerFormat: "<b>{series.name}</b><br>",
+          pointFormat: "{point.x:%e. %b}: {point.y:.2f} issues",
+        }}
+      />
     </>
   );
 };

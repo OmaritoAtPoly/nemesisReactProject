@@ -1,7 +1,13 @@
-import * as React from "react";
+import React from "react";
+import ColumnChart from "../containers/ColumnChart";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+
+  return (
+    <>
+      <ColumnChart />
+    </>
+  );
 };
 
 export default Dashboard;

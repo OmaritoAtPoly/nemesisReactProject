@@ -1,7 +1,6 @@
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { BrowserRouter } from "react-router-dom";
-import './App.css';
 import { Router } from './route';
 import { Theme } from './theme';
 

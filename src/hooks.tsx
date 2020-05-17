@@ -1,5 +1,6 @@
 import { PointOptionsObject } from "highcharts";
 import { useMemo } from "react";
+import { Action, useQuery } from "react-fetching-library";
 
 export const useSumValuesByKey = ({
   data,
@@ -29,4 +30,13 @@ export const useSumValuesByKey = ({
     return result;
   }, [data, key, value]);
   return { dataMap };
+};
+
+const fetchUsersList: Action<any, any> = {
+  method: "GET",
+  endpoint: process.env.REACT_APP_API || 'https://api.github.com/repositories/19438/issues',
+};
+
+export const useQueryApi = () => {
+  return useQuery(fetchUsersList);
 };

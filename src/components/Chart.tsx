@@ -7,29 +7,16 @@ type Props = {
   title?: string;
 };
 
-const ChartIssues: React.FC<Props> = ({ title, data = [] }) => {
+const Chart: React.FC<Props> = ({ title, data = [] }) => {
   const options: Highcharts.Options = {
     series: [
       {
-        type: "line",
-        data: [
-          {
-            x: Date.UTC(1970, 10, 25),
-            y: 0,
-          },
-          {
-            x: Date.UTC(1970, 11, 6),
-            y: 0.25,
-          },
-          {
-            x: Date.UTC(1970, 11, 20),
-            y: 1.41,
-          },
-        ],
+        type: "column",
+        data
       },
     ],
     chart: {
-      type: "spline",
+      type: "column",
     },
     tooltip: {
       headerFormat: "<b>{series.name}</b><br>",
@@ -77,4 +64,4 @@ const ChartIssues: React.FC<Props> = ({ title, data = [] }) => {
   return <HighchartsReact highcharts={Highcharts} options={options} />;
 };
 
-export default ChartIssues;
+export default Chart;

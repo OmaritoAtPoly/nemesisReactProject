@@ -1,6 +1,6 @@
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import * as React from "react";
+import React from "react";
 
 type Props = {
   series?: Highcharts.SeriesAbandsOptions[];
@@ -8,17 +8,10 @@ type Props = {
   tooltip?: Highcharts.TooltipOptions;
 };
 
-const stockTools: Highcharts.StockToolsOptions = {
-  gui: {
-    enabled: true,
-    buttons: "burt"
-  }
-}
 const Chart: React.FC<Props> = ({ title, series = [], tooltip }) => {
   const options: Highcharts.Options = {
     series,
     tooltip,
-    stockTools,
     title: {
       text: title,
     },

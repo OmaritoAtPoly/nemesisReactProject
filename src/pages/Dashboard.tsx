@@ -1,13 +1,17 @@
 import React from "react";
-import ColumnChart from "../containers/ColumnChart";
 import { Header } from "../components/Header";
+import Suspense from "../components/Suspense";
+import ColumnChart from "../containers/ColumnChart";
+import PieChart from "../containers/PieChart";
 
 const Dashboard = () => {
-
   return (
     <>
       <Header />
-      <ColumnChart />
+      <Suspense>
+        <ColumnChart />
+        <PieChart />
+      </Suspense>
     </>
   );
 };

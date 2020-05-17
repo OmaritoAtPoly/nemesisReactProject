@@ -19,7 +19,6 @@ const Login = () => {
       <TextComponent title={"Sign in"} />
       <div className={classes.fields}>
         <InputComponent
-          style={{ paddingBottom: "4px" }}
           typeVariant={"login"}
           value={user}
           placeholder={"User"}
@@ -36,16 +35,14 @@ const Login = () => {
           ) => setPassword(event.target.value)}
           typeVariant={"login"}
         />
-
       </div>
       <ButtonComponent
-        style={{ minWidth: 390, marginTop: "4px" }}
-        label={"Login"}
-        fullWidth={false}
-        typeVariant={"primary"}
-        onClick={() => { console.log(`This will be implement by Omar`) }}
-      />
-
+          style={{maxWidth:350}} 
+          label={"Login"}
+          fullWidth={true}
+          typeVariant={"primary"}
+          onClick={() => { console.log(`This will be implement by Omar`) }}
+        />
     </div>
   );
 };
@@ -54,17 +51,15 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
-    alignItems: "center",
-    minHeight: "100vh",
-    justifyContent: "center"
+    alignItems: "center"
   },
   fields: {
-    minWidth: 390,
     justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     fontSize: 54,
-    color: "white"
+    color: "white",
+    textAlign: "center"
   },
   error: {
     color: "red",
@@ -75,3 +70,5 @@ const useStyles = makeStyles({
 });
 
 export default Login;
+
+

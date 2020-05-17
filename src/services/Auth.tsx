@@ -1,6 +1,6 @@
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { users } from './mochData';
-import bcrypt, { compareSync } from 'bcryptjs';
 
 let userData: any = undefined
 const secretWord = process.env.REACT_APP_SECRET
@@ -33,7 +33,6 @@ export const getCurrentUser = () => {
                 return currentUser;
         }
 }
-
 
 export const userLogOut = () => {
         localStorage.removeItem('isLogged');

@@ -5,18 +5,13 @@ import * as React from "react";
 type Props = {
   series?: Highcharts.SeriesAbandsOptions[];
   title?: string;
+  tooltip: Highcharts.TooltipOptions;
 };
 
-const Chart: React.FC<Props> = ({ title, series = [] }) => {
+const Chart: React.FC<Props> = ({ title, series = [], tooltip }) => {
   const options: Highcharts.Options = {
     series,
-    chart: {
-      type: "column",
-    },
-    tooltip: {
-      headerFormat: "<b>{series.name}</b><br>",
-      pointFormat: "{point.x:%e. %b}: {point.y:.2f} issues",
-    },
+    tooltip,
     title: {
       text: title,
     },

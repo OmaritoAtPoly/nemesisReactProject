@@ -1,16 +1,22 @@
 import jwt from 'jsonwebtoken';
 import { users } from './mochData';
+import bcrypt, { compareSync } from 'bcryptjs';
 
 let userData: any = undefined
 const secretWord = process.env.REACT_APP_SECRET
 
-export const isValidUser = (userName: string, userKeyword: any) => {
+export const isValidUser = (userName: any, userKeyword: any) => {
 
-        const index = users.findIndex(user => (user.name === userName && user.keyword === userKeyword))
-        if (index > -1) {
-                userData = users[index]
+        const clave = bcrypt.hashSync(userKeyword, 10);
+        let isTrue = false;
+        for (let i = 0; i < users.length; i++) {
+                if ((userName === users[i].name) && (clave === users[i].keyword)) {
+                        isTrue = true;
+                        userData = users[i];
+                        break;
+                }
         }
-        return index;
+        return isTrue;
 }
 
 export const userSignIn = () => {
@@ -31,5 +37,6 @@ export const getCurrentUser = () => {
 
 export const userLogOut = () => {
         localStorage.removeItem('isLogged');
+        userData = undefined;
 }
 

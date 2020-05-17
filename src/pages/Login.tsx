@@ -1,8 +1,8 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
-import ButtonComponent from "../component/ButtonComponent";
-import InputComponent from "../component/InputComponent";
-import TextComponent from "../component/TextComponent";
+import Button from "../components/Button";
+import Input from "../components/Input";
+import Text from "../components/Text";
 
 interface Props {
   onClick: (user: string, password: string) => void;
@@ -16,9 +16,10 @@ const Login = () => {
 
   return (
     <div className={classes.container}>
-      <TextComponent title={"Sign in"} />
+      <Text title={"Sign in"} />
       <div className={classes.fields}>
-        <InputComponent
+        <Input
+          style={{ paddingBottom: "4px" }}
           typeVariant={"login"}
           value={user}
           placeholder={"User"}
@@ -26,7 +27,7 @@ const Login = () => {
             event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
           ) => setUser(event.target.value)}
         />
-        <InputComponent
+        <Input
           type={"password"}
           placeholder={"Password"}
           value={password}
@@ -35,14 +36,16 @@ const Login = () => {
           ) => setPassword(event.target.value)}
           typeVariant={"login"}
         />
+
       </div>
-      <ButtonComponent
-          style={{maxWidth:350}} 
-          label={"Login"}
-          fullWidth={true}
-          typeVariant={"primary"}
-          onClick={() => { console.log(`This will be implement by Omar`) }}
-        />
+      <Button
+        style={{ minWidth: 390, marginTop: "4px" }}
+        label={"Login"}
+        fullWidth={false}
+        typeVariant={"primary"}
+        onClick={() => { console.log(`This will be implement by Omar`) }}
+      />
+
     </div>
   );
 };
@@ -51,15 +54,17 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     textAlign: "center",
-    alignItems: "center"
+    alignItems: "center",
+    minHeight: "100vh",
+    justifyContent: "center"
   },
   fields: {
+    minWidth: 390,
     justifyContent: "center",
     display: "flex",
     flexDirection: "column",
     fontSize: 54,
-    color: "white",
-    textAlign: "center"
+    color: "white"
   },
   error: {
     color: "red",
@@ -70,5 +75,3 @@ const useStyles = makeStyles({
 });
 
 export default Login;
-
-

@@ -7,7 +7,7 @@ interface Props {
   fontSize?: number;
 }
 
-const TextComponent = ({ title, titleSubtitle, fontSize }: Props) => {
+const Text = ({ title, titleSubtitle, fontSize }: Props) => {
     const classes = useStyles({ title, titleSubtitle, fontSize });
   return (
     <div className={classes.container}>
@@ -19,7 +19,7 @@ const TextComponent = ({ title, titleSubtitle, fontSize }: Props) => {
   );
 };
 
-export default TextComponent;
+export default Text;
 
 const useStyles = makeStyles(theme => ({
   container: {

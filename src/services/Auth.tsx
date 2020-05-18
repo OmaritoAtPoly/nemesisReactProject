@@ -19,8 +19,13 @@ export const isValidUser = (userName: any, userKeyword: any) => {
 }
 
 export const userSignIn = () => {
-        if (userData !== undefined) {
-                const token = jwt.sign({ userData }, secretWord!, { expiresIn: 300000 })
+        const userPayload = {
+                id: userData.id,
+                name:userData.name,
+                roll:userData.roll
+        }
+        if (userData !== undefined && userPayload !== undefined) {
+                const token = jwt.sign({ userPayload }, secretWord!, { expiresIn: 300000 })
                 if (token) { localStorage.setItem("isLogged", token) }
         }
 }

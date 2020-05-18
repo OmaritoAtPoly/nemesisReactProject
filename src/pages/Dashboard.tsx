@@ -1,15 +1,15 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Header } from "../components/Header";
-import ColumnChart from "../containers/ColumnChart";
-
 import Suspense from "../components/Suspense";
+import ColumnChart from "../containers/ColumnChart";
 import PieChart from "../containers/PieChart";
-import { getCurrentUser } from "../services/Auth";
+
+
 const Dashboard = () => {
-console.log(getCurrentUser())
+
   const token = localStorage.getItem("isLogged");
-    return token ? (
+  return token ? (
     <>
       <Header />
       <Suspense>

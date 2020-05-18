@@ -1,10 +1,12 @@
 import { makeStyles } from "@material-ui/core/styles";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Text from "../components/Text";
-import { isValidUser, userSignIn } from "../services/Auth";
+import { useLogin } from "../hooks";
+import { isLogged } from "../services/Auth";
+import Alert from "../components/Alert";
 
 interface Props {
   onClick: (user: string, password: string) => void;
@@ -12,20 +14,27 @@ interface Props {
 }
 
 const Login = () => {
-  const [user, setUser] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUser] = useState<string | undefined>();
+  const [password, setPassword] = useState<string | undefined>();
   const classes = useStyles();
-  let history = useHistory();
+  const { push } = useHistory();
+  const { currentUser, login, error: alertError, setError } = useLogin();
 
-  const handleLogin = () => {
-    const isValid = isValidUser(user, password);
+  const closeError = useCallback(() => {
+    setError(false);
+  }, [setError]);
 
-    if (isValid) {
-      userSignIn();
-      history.push("/dashboard");
-    } else alert('usuario o clave incorrecto')
-  }
+  const handleLogin = useCallback(() => {
+    login(userName, password);
+  }, [userName, password, login]);
 
+  useEffect(() => {
+    if (currentUser) {
+      push("/");
+    }
+  }, [currentUser, push]);
+
+  if (isLogged()) push("/");
 
   return (
     <div className={classes.container}>
@@ -34,7 +43,7 @@ const Login = () => {
         <Input
           style={{ paddingBottom: "4px" }}
           typeVariant={"login"}
-          value={user}
+          value={userName}
           placeholder={"User"}
           onChange={(
             event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -49,16 +58,19 @@ const Login = () => {
           ) => setPassword(event.target.value)}
           typeVariant={"login"}
         />
-
       </div>
       <Button
         style={{ minWidth: 390, marginTop: "4px" }}
         label={"Login"}
         fullWidth={false}
         typeVariant={"primary"}
-        onClick={() => handleLogin()}
+        onClick={handleLogin}
       />
-
+       <Alert
+        message="the username or password is incorrect"
+        open={alertError}
+        onClose={closeError}
+      />
     </div>
   );
 };
@@ -69,7 +81,7 @@ const useStyles = makeStyles({
     textAlign: "center",
     alignItems: "center",
     minHeight: "100vh",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   fields: {
     minWidth: 390,
@@ -77,14 +89,14 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     fontSize: 54,
-    color: "white"
+    color: "white",
   },
   error: {
     color: "red",
     textAlign: "center",
-    fontSize: 14
+    fontSize: 14,
   },
-  center: { textAlign: "center" }
+  center: { textAlign: "center" },
 });
 
 export default Login;

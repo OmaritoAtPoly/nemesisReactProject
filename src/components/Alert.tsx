@@ -11,13 +11,8 @@ const Alert = ({ message, open, ...rest }: Props) => {
   return (
     <>
       <Snackbar open={open} autoHideDuration={6000}>
-        <MuiAlert
-          elevation={6}
-          variant="filled"
-          severity="error"
-          {...rest}
-        >
-          There was a problem with the server
+        <MuiAlert elevation={6} variant="filled" severity="error" {...rest}>
+          {message}
         </MuiAlert>
       </Snackbar>
     </>

@@ -1,10 +1,10 @@
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Text from "../components/Text";
-import { userSignIn, isValidUser } from "../services/Auth";
-import { useHistory } from "react-router-dom";
+import { isValidUser, userSignIn } from "../services/Auth";
 
 interface Props {
   onClick: (user: string, password: string) => void;

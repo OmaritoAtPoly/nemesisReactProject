@@ -13,9 +13,6 @@ export const Header = () => {
                 <Typography variant="h6" className={classes.title}>
                     Nemesis
                 </Typography>
-                <NavLink to="/login" className={classes.link} >
-                    Login
-                </NavLink>
                 <NavLink to="/login" className={classes.logout}onClick={() => userLogOut()} >
                     <span onClick={() => userLogOut()}>Logout</span>
                 </NavLink>

@@ -5,12 +5,11 @@ import ColumnChart from "../containers/ColumnChart";
 
 import Suspense from "../components/Suspense";
 import PieChart from "../containers/PieChart";
-
-
-const token = localStorage.getItem("isLogged");
-
+import { getCurrentUser } from "../services/Auth";
 const Dashboard = () => {
-  return token ? (
+console.log(getCurrentUser())
+  const token = localStorage.getItem("isLogged");
+    return token ? (
     <>
       <Header />
       <Suspense>

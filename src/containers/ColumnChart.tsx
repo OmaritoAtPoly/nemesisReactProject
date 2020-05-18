@@ -1,11 +1,21 @@
 import moment from "moment";
-import React, { useMemo } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import Alert from "../components/Alert";
 import Chart from "../components/Chart";
 import { useQueryApi, useSumValuesByKey } from "../hooks";
 import { DateFormat } from "../utils";
 
 const ColumnChart = () => {
   const { payload = [], error } = useQueryApi();
+  const [alertError, setAlertError] = useState(error);
+
+  useEffect(() => {
+    setAlertError(error);
+  }, [error, setAlertError]);
+
+  const closeError = useCallback(() => {
+    setAlertError(false);
+  }, [setAlertError]);
 
   const dataColumnPrepared = useMemo(() => {
     return payload.map(
@@ -76,6 +86,11 @@ const ColumnChart = () => {
 
   return (
     <>
+      <Alert
+        message="There was a problem with the server"
+        open={alertError}
+        onClose={closeError}
+      />
       <Chart
         title="CreatedAt chart"
         series={seriesCreatedAt}

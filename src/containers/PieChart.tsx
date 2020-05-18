@@ -3,7 +3,7 @@ import Chart from "../components/Chart";
 import { useQueryApi, useSumValuesByKey } from "../hooks";
 
 const PieChart = () => {
-  const { loading, payload = [], error } = useQueryApi();
+  const { payload = [], error } = useQueryApi();
 
   const dataColumnPrepared = useMemo(() => {
     const comments = payload.map(({ comments }: any) => ({ comments }));

@@ -3,15 +3,28 @@ import React, { useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import Text from "../components/Text";
+import { userSignIn, isValidUser } from "../services/Auth";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   onClick: (user: string, password: string) => void;
+  history: any;
 }
 
 const Login = () => {
   const [user, setUser] = useState("");
   const [password, setPassword] = useState("");
   const classes = useStyles();
+  let history = useHistory();
+
+  const handleLogin = () => {
+    const isValid = isValidUser(user, password);
+
+    if (isValid) {
+      userSignIn();
+      history.push("/dashboard");
+    } else alert('usuario o clave incorrecto')
+  }
 
 
   return (
@@ -43,7 +56,7 @@ const Login = () => {
         label={"Login"}
         fullWidth={false}
         typeVariant={"primary"}
-        onClick={() => { console.log(`This will be implement by Omar`) }}
+        onClick={() => handleLogin()}
       />
 
     </div>

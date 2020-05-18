@@ -1,4 +1,4 @@
-import bcrypt from 'bcryptjs';
+import { compareSync } from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { users } from './mochData';
 
@@ -6,11 +6,10 @@ let userData: any = undefined
 const secretWord = process.env.REACT_APP_SECRET
 
 export const isValidUser = (userName: any, userKeyword: any) => {
-
-        const clave = bcrypt.hashSync(userKeyword, 10);
+        const keyWordString = String(userKeyword); 
         let isTrue = false;
         for (let i = 0; i < users.length; i++) {
-                if ((userName === users[i].name) && (clave === users[i].keyword)) {
+                if ((userName === users[i].name) && (compareSync(keyWordString, users[i].keyword))) {
                         isTrue = true;
                         userData = users[i];
                         break;

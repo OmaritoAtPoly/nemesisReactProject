@@ -14,7 +14,7 @@ const Dashboard = () => {
     <>
       <Header />
       <Suspense>
-        {currentUserNanme == 'John' ? <ColumnChart /> : <PieChart />}
+        {currentUserNanme === 'John' ? <ColumnChart /> : <PieChart />}
       </Suspense>
     </>
   ) : <Redirect to={"/login"} />

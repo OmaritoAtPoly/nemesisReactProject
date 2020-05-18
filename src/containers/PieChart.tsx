@@ -1,18 +1,29 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect, useCallback } from "react";
+import Alert from "../components/Alert";
 import Chart from "../components/Chart";
-import { dataApi } from "../dataApi";
-import { useSumValuesByKey } from "../hooks";
+import { useQueryApi, useSumValuesByKey } from "../hooks";
 
 const PieChart = () => {
-  const [data] = useState(dataApi);
+  const { payload = [], error } = useQueryApi();
 
+  const [alertError, setAlertError] = useState(error);
+
+  useEffect(() => {
+    setAlertError(error);
+  }, [error, setAlertError]);
+
+  const closeError = useCallback(() => {
+    setAlertError(false);
+  }, [setAlertError]);
+  
   const dataColumnPrepared = useMemo(() => {
-    const comments = data.map(({ comments }) => ({ comments }));
-    return comments.map(({ comments }) => ({
+    if (payload.message) return [];
+    const comments = payload.map(({ comments }: any) => ({ comments }));
+    return comments.map(({ comments }: any) => ({
       comments,
       amount: 1,
     }));
-  }, [data]);
+  }, [payload]);
 
   const { dataMap: dataComments } = useSumValuesByKey({
     data: dataColumnPrepared,
@@ -39,6 +50,11 @@ const PieChart = () => {
 
   return (
     <>
+      <Alert
+        message="There was a problem with the server"
+        open={alertError}
+        onClose={closeError}
+      />
       <Chart
         title="CreatedAt chart"
         series={seriesCreatedAt}

@@ -1,23 +1,33 @@
 import moment from "moment";
-import React, { useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import Alert from "../components/Alert";
 import Chart from "../components/Chart";
-import { dataApi } from "../dataApi";
-import { useSumValuesByKey } from "../hooks";
+import { useQueryApi, useSumValuesByKey } from "../hooks";
 import { DateFormat } from "../utils";
 
 const ColumnChart = () => {
-  const [data] = useState(dataApi);
+  const { payload = [], error } = useQueryApi();
+  const [alertError, setAlertError] = useState(error);
+
+  useEffect(() => {
+    setAlertError(error);
+  }, [error, setAlertError]);
+
+  const closeError = useCallback(() => {
+    setAlertError(false);
+  }, [setAlertError]);
 
   const dataColumnPrepared = useMemo(() => {
-    return data.map(
-      ({ created_at: createdAt, updated_at: updateAt, comments }) => ({
+    if (payload.message) return []
+    return payload.map(
+      ({ created_at: createdAt, updated_at: updateAt, comments }: any) => ({
         updateAt: moment(updateAt, DateFormat).valueOf(),
         createdAt: moment(createdAt, DateFormat).valueOf(),
         comments,
         issues: 1,
       })
     );
-  }, [data]);
+  }, [payload]);
 
   const { dataMap: dataCreatedAtIssues } = useSumValuesByKey({
     data: dataColumnPrepared,
@@ -77,6 +87,11 @@ const ColumnChart = () => {
 
   return (
     <>
+      <Alert
+        message="There was a problem with the server"
+        open={alertError}
+        onClose={closeError}
+      />
       <Chart
         title="CreatedAt chart"
         series={seriesCreatedAt}

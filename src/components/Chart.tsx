@@ -1,11 +1,11 @@
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import * as React from "react";
+import React from "react";
 
 type Props = {
   series?: Highcharts.SeriesAbandsOptions[];
   title?: string;
-  tooltip: Highcharts.TooltipOptions;
+  tooltip?: Highcharts.TooltipOptions;
 };
 
 const Chart: React.FC<Props> = ({ title, series = [], tooltip }) => {

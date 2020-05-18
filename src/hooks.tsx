@@ -1,6 +1,6 @@
 import { PointOptionsObject } from "highcharts";
 import { useMemo } from "react";
-import { Action, useQuery } from "react-fetching-library";
+import { Action, useSuspenseQuery } from "react-fetching-library";
 
 export const useSumValuesByKey = ({
   data,
@@ -38,5 +38,5 @@ const fetchUsersList: Action<any, any> = {
 };
 
 export const useQueryApi = () => {
-  return useQuery(fetchUsersList);
+  return useSuspenseQuery(fetchUsersList);
 };

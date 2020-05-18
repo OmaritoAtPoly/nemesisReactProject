@@ -3,15 +3,22 @@ import { Redirect } from "react-router-dom";
 import { Header } from "../components/Header";
 import ColumnChart from "../containers/ColumnChart";
 
+import Suspense from "../components/Suspense";
+import PieChart from "../containers/PieChart";
+
+
 const token = localStorage.getItem("isLogged");
 
 const Dashboard = () => {
-return token ? (
+  return token ? (
     <>
       <Header />
-      <ColumnChart />
+      <Suspense>
+        <ColumnChart />
+        <PieChart />
+      </Suspense>
     </>
-  ) : <Redirect to={"/login"}/>
+  ) : <Redirect to={"/login"} />
 };
 
 export default Dashboard;

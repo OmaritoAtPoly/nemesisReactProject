@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@material-ui/styles";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import { Router } from "./route";
+import { Router } from "./routes/route";
 import { Theme } from "./theme";
 import { createClient, ClientContextProvider } from "react-fetching-library";
 

@@ -18,6 +18,7 @@ const ColumnChart = () => {
   }, [setAlertError]);
 
   const dataColumnPrepared = useMemo(() => {
+    if (payload.message) return []
     return payload.map(
       ({ created_at: createdAt, updated_at: updateAt, comments }: any) => ({
         updateAt: moment(updateAt, DateFormat).valueOf(),

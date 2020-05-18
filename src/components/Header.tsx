@@ -2,6 +2,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import { createStyles, makeStyles } from '@material-ui/styles';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { userLogOut } from '../services/Auth';
 
 export const Header = () => {
     const classes = useStyles();
@@ -12,8 +13,8 @@ export const Header = () => {
                 <Typography variant="h6" className={classes.title}>
                     Nemesis
                 </Typography>
-                <NavLink to="/login" className={classes.link} >
-                    Login
+                <NavLink to="/login" className={classes.logout}onClick={() => userLogOut()} >
+                    <span onClick={() => userLogOut()}>Logout</span>
                 </NavLink>
             </Toolbar>
         </AppBar>
@@ -29,6 +30,11 @@ const useStyles = makeStyles(() =>
         title: {
             flexGrow: 1,
         },
+        logout:{
+            textDecoration: 'none',
+            color: 'inherit',
+            paddingLeft:20,
+        }
     }),
 );
 

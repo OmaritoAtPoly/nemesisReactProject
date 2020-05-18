@@ -13,10 +13,10 @@ export const Header = () => {
                 <Typography variant="h6" className={classes.title}>
                     Nemesis
                 </Typography>
-                <NavLink to="/" className={classes.link} >
+                <NavLink to="/login" className={classes.link} >
                     Login
                 </NavLink>
-                <NavLink to="/" className={classes.logout}onClick={() => userLogOut()} >
+                <NavLink to="/login" className={classes.logout}onClick={() => userLogOut()} >
                     <span onClick={() => userLogOut()}>Logout</span>
                 </NavLink>
             </Toolbar>

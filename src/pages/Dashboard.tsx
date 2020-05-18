@@ -1,11 +1,10 @@
 import React, { useCallback, useState } from "react";
-import { Redirect } from "react-router-dom";
 import Alert from "../components/Alert";
 import { Header } from "../components/Header";
 import Suspense from "../components/Suspense";
 import ColumnChart from "../containers/ColumnChart";
 import PieChart from "../containers/PieChart";
-import { isLogged } from "../services/Auth";
+import { getCurrentUser, isLogged } from "../services/Auth";
 
 const Dashboard = () => {
   const [initialMessage, setInitialMessage] = useState<boolean>(isLogged());
@@ -14,14 +13,15 @@ const Dashboard = () => {
     setInitialMessage(false);
   }, [setInitialMessage]);
 
-  const token = localStorage.getItem("isLogged");
+  const token = getCurrentUser() as any;
+  console.log(token.currentUser);
 
-  return token ? (
+  return (
     <>
       <Header />
       <Suspense>
-        <ColumnChart />
-        <PieChart />
+        {token?.currentUser?.roll === "comments_reviewer" && <ColumnChart />}
+        {token?.currentUser?.roll === "issue_reviewer" && <PieChart />}
       </Suspense>
       <Alert
         message="Welcome to your dashboard"
@@ -30,8 +30,6 @@ const Dashboard = () => {
         severity="success"
       />
     </>
-  ) : (
-    <Redirect to={"/login"} />
   );
 };
 

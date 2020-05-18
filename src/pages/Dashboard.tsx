@@ -14,7 +14,6 @@ const Dashboard = () => {
   }, [setInitialMessage]);
 
   const token = getCurrentUser() as any;
-  console.log(token.currentUser);
 
   return (
     <>

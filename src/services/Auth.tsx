@@ -33,7 +33,7 @@ export const getCurrentUser = () => {
         const token = localStorage.getItem("isLogged");
 
         if (token) {
-                const currentUser = jwt.verify(token, secretWord!);
+                const currentUser = cleanJWT(jwt.verify(token, secretWord!))
                 return currentUser;
         }
 }
@@ -43,3 +43,17 @@ export const userLogOut = () => {
         userData = undefined;
 }
 
+function cleanJWT(token:any) {
+        if (typeof token === 'string') {
+          return token;
+        }
+        const cleanToken = { ...token };
+        delete cleanToken.iss;
+        delete cleanToken.sub;
+        delete cleanToken.aud;
+        delete cleanToken.exp;
+        delete cleanToken.nbf;
+        delete cleanToken.iat;
+        delete cleanToken.jti;
+        return cleanToken;
+      }

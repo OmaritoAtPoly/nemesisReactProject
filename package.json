@@ -16,7 +16,7 @@
     "@types/moment": "^2.13.0",
     "add": "^2.0.6",
     "bcryptjs": "^2.4.3",
-    "highcharts": "^8.1.0",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^3.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.25.3",
